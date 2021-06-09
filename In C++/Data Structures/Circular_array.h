@@ -22,13 +22,14 @@ public:
 	void out_all();		// prints out all elements
 	void push(int data);		// pushes elements into the list, replaces the first element if the list is full
 	void out_order();		// prints out elements based on start and end
+	int pop();		// takes out the 'first' data
 };
 
 
 // prints out all the elements in the list
 void C_array::out_all() {
 
-	for (int i = 0; i < size; i++) {
+	for (int i = 0; i < num; i++) {
 		std::cout << list[i] << " ";
 	}
 }
@@ -69,13 +70,27 @@ void C_array::push(int data) {
 // prints out the array in the order from 'start' to 'end'
 void C_array::out_order() {
 
-	for (int i = 0; i < size; i++) {		// loop to print out all items
+	for (int i = 0; i < num; i++) {		// loop to print out all items
 
-		if ((start + i) > size - 1) {		// if the our item will overflow
-			std::cout << list[(i - start)] << " ";		// then our item must be in the i index position
-		}
-		else {
-			std::cout << list[start + i] <<" ";		// otherwise, it is start + i
-		}
+		std::cout << list[i % num] << " ";
 	}
+}
+
+// takes out the first element, moving the 'first' element to the next index
+int C_array::pop() {
+
+	int item = list[start];		// store what we need to return here
+
+	list[start] = NULL;		// replace this location with NULL
+	num--;		// reduce the number size
+
+	// ensures we do not overflow
+	if (start == (size - 1)) {		// if the start num is the same 
+		start = 0;		// the next index in a circle must be the beginning of the list
+	}
+	else {
+		start++;		// it would not overflow so we can safely increment this
+	}
+
+	return item;
 }
