@@ -64,10 +64,10 @@ def option2():
     head = BinTree(u_input)     # tree is initialized
 
     # while loop so user can keep entering data
-    while u_input.isdigit():
+    while str(u_input).isdigit():
         u_input = input("\nPlease enter an integer to be added to the tree, and anything else to exit.\n")
 
-        if not u_input.isdigit():       # allows the user to exit the loop
+        if not str(u_input).isdigit():       # allows the user to exit the loop
             u_input = input("Are you sure you want to exit? Please enter 'Y' to confirm and anything else to continue\n")
             if u_input == 'Y':
                 break
