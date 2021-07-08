@@ -8,10 +8,11 @@ class BinTree:
     def __init__(self, data):
         self.left = None
         self.right = None
-        self.data = data
+        self.data = int(data)
 
     # the function that inserts data into the tree
-    def insert(self, data):
+    def insert(self, u_data):
+        data = int(u_data)
 
         if self.data:       # Check if there is data already
             if self.data > data:       # now check if our data is larger
